@@ -2,6 +2,8 @@ import {Snackbar, Alert, IconButton, Button} from '@mui/material';
 import { saveLikedFormSubmission } from './service/mockServer';
 import CloseIcon from '@mui/icons-material/Close';
 const CustomSnak = ({handleClose, open, formFields}) => {
+  console.log('formFields ', formFields);
+  
     return(
         <Snackbar
             open={open}
@@ -45,8 +47,8 @@ const CustomSnak = ({handleClose, open, formFields}) => {
               }
           >
             <div className='toast-msg-div'>
-                <span> First Lastname</span>
-                <span> emai.address@domain.com</span>
+                <span> First {formFields?.firstName} Lastname {formFields?.lastName} </span>
+                <span> {formFields?.email} </span>
             </div>
              
           </Alert>

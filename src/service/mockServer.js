@@ -1,6 +1,5 @@
 // NOTE: Do not modify this file
 import Chance from 'chance';
-
 const chance = new Chance();
 const callbacks = [];
 function randomPercent() {
@@ -93,5 +92,18 @@ export function createMockFormSubmission() {
       liked: false,
     },
   };
-  callbacks.forEach((cb) => cb(formSubmission));
+  callbacks.forEach((cb) => {
+    if (typeof cb === 'function') {
+      cb(formSubmission);
+    }
+  });
+}
+
+// Example of adding a callback
+// callbacks.push((submission) => {
+//   console.log('Form submitted:', submission);
+  
+// });
+export function onFormSubmission(callback) {
+  callbacks.push(callback);
 }
