@@ -7,33 +7,22 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import CustomSnak from './customSnak';
-import { createMockFormSubmission } from './service/mockServer';
+import { createMockFormSubmission, onMessage } from './service/mockServer';
 import './header.css'
 export default function Header() {
   const [open, setOpen] = useState(false);
-  const [formFields , setFormFields] = useState({
-      email: '',
-      firstName: '',
-      lastName: '',
-      liked: false,
-  })
+  
   const headerButtonPress = () => {
-    setModelOpen(true)
+    // setModelOpen(true)
+    onMessage()
     createMockFormSubmission()
   }
   const handleClose = () => {
     console.log('new form submission');
     setOpen(false)
   }
-  const onFieldChange = (key, value) => {
-    setFormFields((prevState) => ({
-      ...prevState,
-      [key]: value
-    }))
-  }
-  const submitForm = () => {
-    
-  }
+  
+
 
   return (
     <Box sx={{flexGrow: 1}}>
@@ -58,7 +47,7 @@ export default function Header() {
           >
             New Submission
           </Button>
-          <CustomSnak handleClose={handleClose} open={open} formFields={formFields} />
+          <CustomSnak handleClose={handleClose} open={open} />
         </Toolbar>
         
       </AppBar>
